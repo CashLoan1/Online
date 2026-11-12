@@ -421,6 +421,10 @@
 
       try {
         const response = await fetch("/api/applications", { method: "POST", body: formData });
+        const contentType = response.headers.get("content-type") || "";
+        if (!contentType.includes("application/json")) {
+          throw new Error("The application backend is not available at this address. Start the Node server with `npm.cmd start` and open http://127.0.0.1:3000 instead of GitHub Pages or Live Server.");
+        }
         const result = await response.json();
         if (!response.ok) throw new Error(result.error || "Application could not be submitted.");
 
@@ -431,7 +435,9 @@
         message.textContent = "Thank you. Your application has been received and is pending review.";
       } catch (error) {
         message.className = "form-message error";
-        message.textContent = error.message || "Unable to submit your application. Please try again.";
+        message.textContent = error instanceof TypeError
+          ? "Cannot connect to the application backend. Start the Node server with `npm.cmd start` and open http://127.0.0.1:3000."
+          : error.message || "Unable to submit your application. Please try again.";
       } finally {
         submitButton.disabled = false;
         submitButton.textContent = "Submit application";
