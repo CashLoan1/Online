@@ -1,0 +1,442 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f6">
+  <title>Cash Loan — Apply online</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172923;
+      --muted: #6b7973;
+      --green: #176b4b;
+      --green-dark: #10583d;
+      --mint: #e8f4ed;
+      --line: #dce5df;
+      --paper: #fff;
+      --background: #f5f8f6;
+      --warning: #9c4c22;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background:
+        radial-gradient(ellipse at 82% 8%, #e3f1e8 0, transparent 30rem),
+        var(--background);
+      color: var(--ink);
+      font: 16px/1.5 "Segoe UI", Arial, sans-serif;
+    }
+
+    .page {
+      width: min(100% - 40px, 1080px);
+      margin: 0 auto;
+    }
+
+    header {
+      height: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-size: 19px;
+      font-weight: 750;
+      letter-spacing: -.5px;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--green);
+      color: white;
+    }
+
+    .secure-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 450px);
+      align-items: center;
+      gap: clamp(40px, 8vw, 110px);
+      min-height: calc(100vh - 150px);
+      padding: 28px 0 58px;
+    }
+
+    .intro { max-width: 470px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 22px;
+      height: 2px;
+      background: currentColor;
+      content: "";
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.07;
+      letter-spacing: -2.6px;
+    }
+
+    h1 span { color: var(--green); }
+
+    .intro-copy {
+      max-width: 390px;
+      margin: 20px 0 30px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .benefit {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      color: #43544c;
+      font-size: 14px;
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--mint);
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .form-card {
+      padding: clamp(25px, 4vw, 38px);
+      border: 1px solid #e8eeea;
+      border-radius: 22px;
+      background: var(--paper);
+      box-shadow: 0 18px 55px #183b2912;
+    }
+
+    .form-card h2 {
+      margin: 0;
+      font-size: 24px;
+      letter-spacing: -.6px;
+    }
+
+    .form-subtitle {
+      margin: 7px 0 25px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .phone-wrap {
+      display: flex;
+      height: 52px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: white;
+      transition: border-color .2s, box-shadow .2s;
+    }
+
+    .phone-wrap:focus-within,
+    .upload-box:focus-within {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px #176b4b18;
+    }
+
+    .phone-prefix {
+      padding: 0 13px;
+      border-right: 1px solid var(--line);
+      color: #53625b;
+      font-size: 14px;
+    }
+
+    input[type="tel"] {
+      width: 100%;
+      height: 100%;
+      padding: 0 13px;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    input::placeholder { color: #9ba7a0; }
+
+    .field { margin-top: 21px; }
+
+    .upload-box {
+      position: relative;
+      display: flex;
+      min-height: 112px;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      border: 1px dashed #b9c9bf;
+      border-radius: 10px;
+      background: #fbfdfb;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color .2s, background .2s;
+    }
+
+    .upload-box:hover { border-color: var(--green); background: #f6fbf7; }
+
+    .upload-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      pointer-events: none;
+    }
+
+    .upload-icon { margin-bottom: 4px; color: var(--green); }
+    .upload-title { font-size: 14px; font-weight: 650; }
+    .upload-hint { color: var(--muted); font-size: 12px; }
+
+    input[type="file"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+    }
+
+    .privacy-note {
+      margin: 18px 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    button {
+      width: 100%;
+      min-height: 52px;
+      border: 0;
+      border-radius: 10px;
+      background: var(--green);
+      color: white;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background .2s, transform .2s;
+    }
+
+    button:hover { background: var(--green-dark); }
+    button:active { transform: translateY(1px); }
+    button:focus-visible, .upload-box:focus-within { outline: 3px solid #176b4b35; outline-offset: 2px; }
+
+    .form-message {
+      display: none;
+      margin: 13px 0 0;
+      border-radius: 9px;
+      padding: 12px 13px;
+      font-size: 13px;
+    }
+
+    .form-message.error { display: block; background: #fff2eb; color: var(--warning); }
+    .form-message.success { display: block; background: var(--mint); color: var(--green-dark); }
+
+    footer {
+      padding: 0 0 25px;
+      color: #87938d;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .page { width: min(100% - 32px, 500px); }
+      header { height: 72px; }
+      .secure-label { font-size: 12px; }
+      main {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        min-height: auto;
+        padding: 38px 0 40px;
+      }
+      .intro { max-width: 500px; }
+      .intro-copy { margin: 15px 0 20px; }
+      .intro h1 { font-size: clamp(37px, 10vw, 49px); }
+      .benefit { display: none; }
+      footer { padding-bottom: 20px; }
+    }
+
+    @media (max-width: 390px) {
+      .secure-label { max-width: 100px; text-align: right; }
+      .form-card { padding: 23px 19px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <a class="brand" href="#" aria-label="Cash Loan home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="23" height="23" viewBox="0 0 24 24" fill="none">
+            <path d="M5 8.5 12 4l7 4.5v10a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 5 18.5v-10Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M9 13h6m-3-3v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        Cash Loan
+      </a>
+      <div class="secure-label" aria-label="Your information is private">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M6 10V7a6 6 0 0 1 12 0v3m-13 0h14v11H5V10Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Private &amp; secure
+      </div>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="eyebrow">Simple online application</div>
+        <h1 id="intro-title">A little help,<br><span>when you need it.</span></h1>
+        <p class="intro-copy">Start your cash loan application in just a few steps. Add your contact number and a photo of your ID to get started.</p>
+        <div class="benefit"><span class="check" aria-hidden="true">✓</span> A quick, straightforward application</div>
+        <div class="benefit"><span class="check" aria-hidden="true">✓</span> Review your details before submitting</div>
+      </section>
+
+      <section class="form-card" aria-labelledby="form-title">
+        <h2 id="form-title">Start your application</h2>
+        <p class="form-subtitle">Enter your details below to continue.</p>
+        <form id="application-form" novalidate>
+          <div>
+            <label for="phone">Phone number</label>
+            <div class="phone-wrap">
+              <span class="phone-prefix" aria-hidden="true">+</span>
+              <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="Country code and number" aria-describedby="form-message">
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="id-photo">Photo of your ID</label>
+            <label class="upload-box" for="id-photo">
+              <span class="upload-content">
+                <svg class="upload-icon" width="25" height="25" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v5h14v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="upload-title" id="upload-title">Choose a photo or take one</span>
+                <span class="upload-hint" id="upload-hint">JPG or PNG · Up to 5 MB</span>
+              </span>
+              <input id="id-photo" name="idPhoto" type="file" accept="image/jpeg,image/png" aria-describedby="upload-hint form-message">
+            </label>
+          </div>
+
+          <p class="privacy-note">Your application is stored for review by authorized staff. Your ID photo is not publicly accessible.</p>
+          <button type="submit">Submit application</button>
+          <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>Applications are accessible only to authorized staff.</footer>
+  </div>
+
+  <script>
+    const form = document.querySelector("#application-form");
+    const phone = document.querySelector("#phone");
+    const photo = document.querySelector("#id-photo");
+    const uploadTitle = document.querySelector("#upload-title");
+    const uploadHint = document.querySelector("#upload-hint");
+    const message = document.querySelector("#form-message");
+
+    photo.addEventListener("change", () => {
+      const file = photo.files[0];
+      uploadTitle.textContent = file ? file.name : "Choose a photo or take one";
+      uploadHint.textContent = file ? "Photo selected" : "JPG or PNG · Up to 5 MB";
+      message.className = "form-message";
+      message.textContent = "";
+    });
+
+    phone.addEventListener("input", () => {
+      message.className = "form-message";
+      message.textContent = "";
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const file = photo.files[0];
+
+      if (!phone.value.trim() || !file) {
+        message.className = "form-message error";
+        message.textContent = "Please fill in both fields: enter your phone number and choose a photo of your ID.";
+        return;
+      }
+
+      if (!file.type.match(/^image\/(jpeg|png)$/) || file.size > 5 * 1024 * 1024) {
+        message.className = "form-message error";
+        message.textContent = "Choose a JPG or PNG image no larger than 5 MB.";
+        return;
+      }
+
+      const submitButton = form.querySelector("button[type='submit']");
+      const formData = new FormData(form);
+      formData.set("phone", `+${phone.value.replace(/\D/g, "")}`);
+      submitButton.disabled = true;
+      submitButton.textContent = "Submitting...";
+      message.className = "form-message";
+
+      try {
+        const response = await fetch("/api/applications", { method: "POST", body: formData });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.error || "Application could not be submitted.");
+
+        form.reset();
+        uploadTitle.textContent = "Choose a photo or take one";
+        uploadHint.textContent = "JPG or PNG · Up to 5 MB";
+        message.className = "form-message success";
+        message.textContent = "Thank you. Your application has been received and is pending review.";
+      } catch (error) {
+        message.className = "form-message error";
+        message.textContent = error.message || "Unable to submit your application. Please try again.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit application";
+      }
+    });
+  </script>
+</body>
+</html>
